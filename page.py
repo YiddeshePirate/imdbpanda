@@ -38,8 +38,8 @@ def getinfo(idnum):
     stars = [x.strip('\n') for x in stars]
     stars = [x.strip(" ") for x in stars]
     helo = soup.find_all("h1")
-    for i in helo:
-        print(i.text)
+    year = helo.split(" ")[-1][1:-1]
+
     return {"directors":director, "writers":writer, "stars": stars}
 
     
@@ -47,8 +47,6 @@ def getinfo(idnum):
 
 
 print(getinfo("tt2584384"))
-
-
 
 # req = requests.get(url)
 # soup = BeautifulSoup(req.text, "html.parser")
