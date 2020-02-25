@@ -40,9 +40,16 @@ def getinfo(idnum):
     stars = [x.strip('\n') for x in stars]
     stars = [x.strip(" ") for x in stars]
     helo = soup.find_all("h1")
+<<<<<<< HEAD
     helo = [x.text for x in helo][-1]
     title, year = helo.split("\xa0")
     year = year[1:-2]
+=======
+    year = helo.split(" ")[-1][1:-1]
+
+    return {"directors":director, "writers":writer, "stars": stars}
+
+>>>>>>> e68425c631f5437b3c85ecd8d935c933a5745d0b
     
     return {"title":title, "directors":director, "writers":writer, "stars": stars, "year":year}
 
@@ -56,8 +63,6 @@ print(info)
 
 # for i in o:
     # print(i)
-
-
 
 
 
