@@ -1,3 +1,5 @@
+import pickle
+
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -38,15 +40,24 @@ def getinfo(idnum):
     stars = [x.strip('\n') for x in stars]
     stars = [x.strip(" ") for x in stars]
     helo = soup.find_all("h1")
-    for i in helo:
-        print(i.text)
-    return {"directors":director, "writers":writer, "stars": stars}
-
+    helo = [x.text for x in helo][-1]
+    title, year = helo.split("\xa0")
+    year = year[1:-2]
     
+    return {"title":title, "directors":director, "writers":writer, "stars": stars, "year":year}
+
+ratings = getratings('tt1345836')
+info = getinfo('tt1345836')
+total = info.update(ratings)
+print(total)
+print(info)
+# with open("imdbid.pkl", "rb") as f:
+    # o = pickle.load(f)
+
+# for i in o:
+    # print(i)
 
 
-
-print(getinfo("tt2584384"))
 
 
 
